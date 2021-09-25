@@ -6,15 +6,16 @@ as `thanos tools bucket rewrite --rewrite.to-relabel-config`, but with support f
 ```shell
 usage: promrelabel [<flags>] [<db path>]
 
-A block storage based long-term storage for Prometheus.
+A tool to relabel Prometheus TSDB blocks
 
 Flags:
   -h, --help                 Show context-sensitive help (also try --help-long and --help-man).
       --relabel-config=RELABEL-CONFIG  
-                             Relabel configuration file path
-      --id=ID ...            Block IDs to apply relabeling
-      --dry-run              Dry run mode
-      --delete-source-block  Delete source block
+                             Relabel configuration file path. For the file format, please refer to https://github.com/yeya24/promrelabel/blob/master/relabel.yaml and
+                             https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config.
+      --id=ID ...            Block IDs to apply relabeling. (Repeated flag)
+      --dry-run              Whether to enable dry run mode or not. Default is true.
+      --delete-source-block  Whether to delete source block or not after relabeling. Default is false.
 
 Args:
   [<db path>]  Database path (default is data/).

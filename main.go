@@ -47,13 +47,13 @@ func main() {
 }
 
 func run(logger log.Logger) error {
-	app := kingpin.New(filepath.Base(os.Args[0]), "A block storage based long-term storage for Prometheus.")
+	app := kingpin.New(filepath.Base(os.Args[0]), "A tool to relabel Prometheus TSDB blocks")
 	app.HelpFlag.Short('h')
 
-	app.Flag("relabel-config", "Relabel configuration file path").StringVar(&relabelConfig)
-	app.Flag("id", "Block IDs to apply relabeling").StringsVar(&blockIDs)
-	app.Flag("dry-run", "Dry run mode").Default("true").BoolVar(&dryRun)
-	app.Flag("delete-source-block", "Delete source block").Default("false").BoolVar(&deleteSource)
+	app.Flag("relabel-config", "Relabel configuration file path. For the file format, please refer to https://github.com/yeya24/promrelabel/blob/master/relabel.yaml and https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config.").StringVar(&relabelConfig)
+	app.Flag("id", "Block IDs to apply relabeling. (Repeated flag)").StringsVar(&blockIDs)
+	app.Flag("dry-run", "Whether to enable dry run mode or not. Default is true.").Default("true").BoolVar(&dryRun)
+	app.Flag("delete-source-block", "Whether to delete source block or not after relabeling. Default is false.").Default("false").BoolVar(&deleteSource)
 	app.Arg("db path", "Database path (default is "+defaultDBPath+").").Default(defaultDBPath).StringVar(&dbPath)
 
 	kingpin.MustParse(app.Parse(os.Args[1:]))
