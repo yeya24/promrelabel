@@ -151,6 +151,7 @@ func run(logger log.Logger) error {
 	return nil
 }
 
+// Copied from https://github.com/prometheus/prometheus/blob/b1ed4a0a663d0c62526312311c7529471abbc565/tsdb/block.go#L217.
 func writeMetaFile(logger log.Logger, dir string, meta *tsdb.BlockMeta) (int64, error) {
 	meta.Version = metaVersion1
 
