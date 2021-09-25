@@ -1,0 +1,8 @@
+- action: replace
+  source_labels: [__name__]
+  regex: k8s_app_metric38
+  target_label: __name__
+  replacement: old_metric
+- action: drop
+  source_labels: [__name__]
+  regex: k8s_app_metric37
